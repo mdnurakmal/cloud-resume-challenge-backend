@@ -3,6 +3,6 @@ FROM python:3.7
 
 COPY . .
 
-pip install Flask
+RUN pip install Flask
 
 CMD python main.py
