@@ -19,9 +19,8 @@ from google.cloud import firestore
 
 db = firestore.Client()
 doc_ref = db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge').get(field_paths={'hasInit'}).to_dict()
-print(doc_ref.get('hasInit')['akey'])
-hasInit = doc_ref.getBoolean(u'hasInit')
-print(hasInit)
+an_integer = distutils.util.strtobool(doc_ref.get('hasInit')['akey'])
+print(an_integer)
 
 
 class Shard(object):
