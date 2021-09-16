@@ -16,6 +16,8 @@
 import random
 from distutils.util import strtobool
 from google.cloud import firestore
+
+import logging as log
 import google.cloud.logging as logging
 
 class Shard(object):
