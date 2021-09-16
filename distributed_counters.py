@@ -18,12 +18,15 @@ from distutils.util import strtobool
 from google.cloud import firestore
 
 db = firestore.Client()
-doc_ref = db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge').get(field_paths={'hasInit'}).to_dict()
-hasInit = doc_ref.get('hasInit')['akey']
+doc_ref = db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge')
+hasInit = db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge').get(field_paths={'hasInit'}).to_dict().get('hasInit')['akey']
+
+counter = Counter()
+
 if hasInit :
     print("has init")
 else:
-    print("has not init")
+    counter.init_counter(doc_ref)
 
 
 
