@@ -17,10 +17,6 @@ import random
 from distutils.util import strtobool
 from google.cloud import firestore
 
-
-
-
-
 class Shard(object):
     """
     A shard is a distributed counter. Each shard can support being incremented
@@ -90,6 +86,5 @@ hasInit = db.collection(u'cloud-resume-challenge-collection').document(u'cloud-r
 counter = Counter(10)
 
 if not hasInit :
-
     counter.init_counter(doc_ref)
     db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge').update({u'hasInit': True})
