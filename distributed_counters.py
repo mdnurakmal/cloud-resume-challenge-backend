@@ -79,14 +79,17 @@ class Counter(object):
         return total
     # [END firestore_solution_sharded_counter_get]
 
+def increment():
+    global counter, doc_ref
+    counter.increment_counter(doc_ref)
+    print("Increment")
+
 db = firestore.Client()
 doc_ref = db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge')
 hasInit = db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge').get(field_paths={'hasInit'}).to_dict().get('hasInit')['akey']
-
 counter = Counter(10)
 
-if hasInit :
-    print("has init")
-else:
+if not hasInit :
+
     counter.init_counter(doc_ref)
     db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge').update({u'hasInit': True})
