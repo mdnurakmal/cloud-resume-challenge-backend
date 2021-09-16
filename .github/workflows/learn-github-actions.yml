@@ -1,12 +1,12 @@
-name: GitHub Actions Demo
-on: [push]
-jobs:
-  Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@v1
-        with:
-          token: ${{ secrets.WORKFLOW_TOKEN }}
-          repository: mdnurakmal/cloud-resume-challenge-infra
-          event-type: opened
+# name: GitHub Actions Demo
+# on: [push]
+# jobs:
+#   Explore-GitHub-Actions:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Repository Dispatch
+#         uses: peter-evans/repository-dispatch@v1
+#         with:
+#           token: ${{ secrets.WORKFLOW_TOKEN }}
+#           repository: mdnurakmal/cloud-resume-challenge-infra
+#           event-type: opened
