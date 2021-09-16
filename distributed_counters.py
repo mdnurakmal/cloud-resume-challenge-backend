@@ -19,10 +19,9 @@ from google.cloud import firestore
 
 db = firestore.Client()
 doc_ref = db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge')
+hasInit = doc_ref.get(field_paths={'hasInit'}).to_dict()
+print(hasInit)
 
-for doc in doc_ref:
-    hasInit = u'{}'.format(doc.to_dict()['hasInit'])
-    print(hasInit)
 
 class Shard(object):
     """
