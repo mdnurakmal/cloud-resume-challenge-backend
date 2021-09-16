@@ -5,6 +5,6 @@ COPY . .
 
 RUN pip install Flask
 
-EXPOSE 8000
+EXPOSE $PORT
 
 CMD python main.py
