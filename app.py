@@ -15,7 +15,9 @@ def welcome():
         "count" : "1"
     }
 
-    return json.dumps(value)
+    response = flask.jsonify({'some': 'data'})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 if __name__ == "__main__":
