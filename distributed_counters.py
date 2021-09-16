@@ -14,12 +14,12 @@
 
 # [START firestore_solution_sharded_counter_custom_type]
 import random
-import distutils
+from distutils.util import strtobool
 from google.cloud import firestore
 
 db = firestore.Client()
 doc_ref = db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge').get(field_paths={'hasInit'}).to_dict()
-an_integer = distutils.util.strtobool(doc_ref.get('hasInit')['akey'])
+an_integer = strtobool(doc_ref.get('hasInit')['akey'])
 print(an_integer)
 
 
