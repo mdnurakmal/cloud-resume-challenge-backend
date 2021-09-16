@@ -1,8 +1,10 @@
 from flask import Flask
 from distributed_counters import increment
+from flask_cors import CORS
 import json
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/increment/', methods=['GET', 'POST'])
 def welcome():
