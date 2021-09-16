@@ -19,7 +19,7 @@ from google.cloud import firestore
 
 db = firestore.Client()
 doc_ref = db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge')
-hasInit = doc_ref.get(field_paths={'hasInit'}).to_dict().get('hasInit')
+hasInit = doc_ref.getBoolean(u'hasInit')
 print(hasInit)
 
 
