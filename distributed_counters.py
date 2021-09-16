@@ -18,7 +18,7 @@ from distutils.util import strtobool
 from google.cloud import firestore
 
 import logging as log
-import google.cloud.logging as logging
+import google.cloud.logging
 
 class Shard(object):
     """
@@ -83,8 +83,16 @@ def increment():
     counter.increment_counter(doc_ref)
     print("Increment")
 
-logging_client = logging.Client()
-logging_client.setup_logging()
+# Instantiates a client
+client = google.cloud.logging.Client()
+
+# Retrieves a Cloud Logging handler based on the environment
+# you're running in and integrates the handler with the
+# Python logging module. By default this captures all logs
+# at INFO level and higher
+client.get_default_handler()
+client.setup_logging()
+
 log.info("Some log here") 
 
 db = firestore.Client()
