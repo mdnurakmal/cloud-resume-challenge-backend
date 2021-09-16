@@ -7,6 +7,5 @@ RUN pip install flask gunicorn
 RUN pip install flask-wtf
 RUN pip install flask-bootstrap
 RUN pip install google-cloud-firestore
-RUN chmod +x init.sh
 
-CMD ./init.sh
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 app:app
