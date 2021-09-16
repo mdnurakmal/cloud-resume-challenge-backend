@@ -82,7 +82,8 @@ def increment():
 
 db = firestore.Client()
 doc_ref = db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge')
-hasInit = doc_ref.collection('hasInit').to_dict()['akey']
+hasInit = doc_ref.get()
+print(hasInit)
 counter = Counter(10)
 
 if not hasInit :
