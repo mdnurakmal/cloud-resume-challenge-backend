@@ -89,3 +89,4 @@ if hasInit :
     print("has init")
 else:
     counter.init_counter(doc_ref)
+    db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge').update({u'hasInit': True})
