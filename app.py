@@ -6,7 +6,7 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/increment/', methods=['GET', 'POST'])
+@app.route('/increment/', methods=['GET'])
 def welcome():
     print("hello")
     increment()
@@ -15,9 +15,8 @@ def welcome():
         "count" : "1"
     }
 
-    response = flask.jsonify({'some': 'data'})
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    return response
+   
+    return value
 
 
 if __name__ == "__main__":
