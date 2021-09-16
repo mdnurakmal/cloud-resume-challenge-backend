@@ -1,5 +1,6 @@
 from flask import Flask
 from distributed_counters import increment
+import json
 
 app = Flask(__name__)
 
@@ -7,7 +8,12 @@ app = Flask(__name__)
 def welcome():
     print("hello")
     increment()
-    return "Hello World!"
+
+    value ={
+        "count" : "1"
+    }
+
+    return json.dumps(value)
 
 
 if __name__ == "__main__":
