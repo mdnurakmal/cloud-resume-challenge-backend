@@ -18,7 +18,7 @@ import random
 from google.cloud import firestore
 
 db = firestore.Client()
-doc_ref = db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge').get(field_paths=u'hasInit')
+doc_ref = db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge').get(field_paths={'hasInit'})
 print(doc_ref)
 hasInit = doc_ref.getBoolean(u'hasInit')
 print(hasInit)
