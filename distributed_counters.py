@@ -16,6 +16,7 @@
 import random
 from distutils.util import strtobool
 from google.cloud import firestore
+import google.cloud.logging as logging
 
 class Shard(object):
     """
@@ -79,6 +80,10 @@ def increment():
     global counter, doc_ref
     counter.increment_counter(doc_ref)
     print("Increment")
+
+logging_client = logging.Client()
+logging_client.setup_logging()
+log.info(f"Some log here: {"Hello"}") 
 
 db = firestore.Client()
 doc_ref = db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge')
