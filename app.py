@@ -5,7 +5,7 @@ import json
 import os
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route('/increment/', methods=['GET'])
 def welcome():
@@ -21,4 +21,4 @@ def welcome():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=int(os.environ['PORT']))
+    app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
