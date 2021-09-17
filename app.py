@@ -5,10 +5,8 @@ import json
 
 app = Flask(__name__)
 CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/increment/', methods=['GET'])
-@cross_origin()
 def welcome():
     print("hello")
     increment()
