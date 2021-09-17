@@ -10,4 +10,4 @@ RUN pip install Flask-Cors
 RUN pip install google-cloud-firestore
 RUN pip install google-cloud-logging
 
-CMD flask run
+CMD python app.py
