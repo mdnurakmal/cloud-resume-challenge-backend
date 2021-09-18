@@ -13,7 +13,7 @@ def welcome():
     increment()
 
     value ={
-        "count" : "1"
+        "count" : getVisitorCount()
     }
 
    

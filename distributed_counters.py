@@ -83,6 +83,12 @@ def increment():
     counter.increment_counter(doc_ref)
     print("Increment")
 
+def getVisitorCount():
+    global counter, doc_ref
+    return counter.get_count(doc_ref)
+
+    
+
 # Instantiates a client
 client = google.cloud.logging.Client()
 
