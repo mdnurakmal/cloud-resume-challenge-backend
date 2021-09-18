@@ -1,5 +1,5 @@
 from flask import Flask
-from distributed_counters import increment
+from distributed_counters import increment,getVisitorCount
 from flask_cors import CORS
 import json
 import os
