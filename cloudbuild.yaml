@@ -15,7 +15,7 @@ steps:
     - '-c' # pass what follows as a command to bash
     - |
       gcloud config set project ${PROJECT_ID}
-      gcloud artifacts docker images list asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME} --limit=1 | grep sha256 | cut -d ' ' -f 2
+      gcloud artifacts docker images list asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME} --limit=1 | grep sha256 
       dockerSHA=`gcloud artifacts docker images list asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME} --limit=1 | grep sha256 | cut -d ' ' -f 2`
       echo $dockerSHA > /workspace/first.txt
       echo HELLO
