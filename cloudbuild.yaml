@@ -1,5 +1,5 @@
 steps:
-  - id: "build image"
+  - id: "Build docker image"
     name: "gcr.io/cloud-builders/docker"
     args:
       [
@@ -8,6 +8,18 @@ steps:
         "asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}",
         ".",
       ]
+
+  - id: "Update cloud run service"
+    name: "gcr.io/${PROJECT_ID}/terraform"
+    entrypoint: 'bash'
+    args:
+    - '-c' # pass what follows as a command to bash
+    - |
+      terraform -chdir=terraform init
+      terraform -chdir=terraform import google_cloud_run_service.resume ${PROJECT_ID}
+      terraform destroy
+      terraform apply
+
 
 options:
   logStreamingOption: STREAM_ON
