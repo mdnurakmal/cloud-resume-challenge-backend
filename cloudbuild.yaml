@@ -1,0 +1,19 @@
+steps:
+  - id: "build image"
+    name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "gcr.io/${GOOGLE_CLOUD_PROJECT}/${_SERVICE_NAME}",
+        ".",
+      ]
+
+options:
+  logStreamingOption: STREAM_ON
+
+substitutions:
+  _SERVICE_NAME: cloud-resume-challenge
+
+images:
+  - "gcr.io/${PROJECT_ID}/${_SERVICE_NAME}"
