@@ -8,7 +8,7 @@ steps:
       docker build . -t asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}
       docker push asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}
 
-  - id: "Setup gcloud"
+  - id: "Setup gcloud & get latest docker digest"
     name: "gcr.io/cloud-builders/gcloud"
     entrypoint: 'bash'
     args:
