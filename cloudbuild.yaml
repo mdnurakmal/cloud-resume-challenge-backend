@@ -6,6 +6,7 @@ steps:
     - '-c' # pass what follows as a command to bash
     - |
       pip install pytest
+      pytest
 
 
   - id: "Build docker image"
