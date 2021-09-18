@@ -17,8 +17,8 @@ steps:
     - |
       terraform -chdir=terraform init
       terraform -chdir=terraform import google_cloud_run_service.resume ${PROJECT_ID}
-      terraform destroy
-      terraform apply
+      terraform -chdir=terraform destroy
+      terraform -chdir=terraform apply
 
 
 options:
