@@ -19,6 +19,7 @@ steps:
       dockerSHA=`gcloud artifacts docker images list asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME} --limit=1 | grep sha256 | cut -d ' ' -f 2`
       echo $dockerSHA > /workspace/first.txt
       echo HELLO
+      echo ${PROJECT_ID}
       echo $dockerSHA
 
   - id: "Update cloud run service"
