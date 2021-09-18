@@ -6,7 +6,7 @@ steps:
      - '-c' # pass what follows as a command to bash
      - |
        gcloud config set project ${PROJECT_ID}
-
+       
   - id: "Build docker image"
     name: "gcr.io/cloud-builders/docker"
     args:
