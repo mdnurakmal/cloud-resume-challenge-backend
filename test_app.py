@@ -7,4 +7,4 @@ def test_hello():
     response = app.test_client().get('/')
 
     assert response.status_code == 200
-    assert response.data.count == b'count'
+    assert len(response.json()['count']) == 1
