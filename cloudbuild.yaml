@@ -17,8 +17,8 @@ steps:
     - |
       terraform -chdir=terraform init
       terraform -chdir=terraform import google_cloud_run_service.cloud-resume-challenge asia-east1/${PROJECT_ID}/${_SERVICE_NAME}
-      terraform -chdir=terraform destroy
-      terraform -chdir=terraform apply
+      terraform -chdir=terraform destroy -auto-approve
+      terraform -chdir=terraform apply -auto-approve
 
 options:
   logStreamingOption: STREAM_ON
