@@ -10,3 +10,8 @@ variable "project" {
   description = "Enter project name:"
 }
 
+variable "imagesha" {
+  type    = string
+  default = ""
+  description = "Enter latest docker image digest:"
+}

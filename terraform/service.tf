@@ -9,7 +9,7 @@ resource "google_cloud_run_service" "cloud-resume-challenge" {
     spec {
       service_account_name = google_service_account.cloud_resume_challenge_worker.email
       containers {
-        image = "asia-docker.pkg.dev/${var.project}/${local.service_name}/${local.service_name}"
+        image = "asia-docker.pkg.dev/${var.project}/${local.service_name}/${local.service_name}@${var.imagesha}"
       }
     }
   }
