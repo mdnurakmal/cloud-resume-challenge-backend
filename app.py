@@ -10,14 +10,8 @@ cors = CORS(app, resources={r"/*": {"origins": "https://oneclicklaunch.com"}})
 @app.route('/', methods=['GET'])
 def welcome():
 
-    headers = {
-            'Access-Control-Allow-Origin': 'https://oneclicklaunch.com',
-            'Access-Control-Allow-Methods': 'GET',
-            'Access-Control-Allow-Headers': 'Content-Type',
-            'Access-Control-Max-Age': '3600'
-    }
 
-    return ('Hello World!', 200, headers)
+    return ('Hello World!')
 
 
 if __name__ == "__main__":
