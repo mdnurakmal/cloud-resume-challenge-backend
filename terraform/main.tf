@@ -7,9 +7,6 @@ terraform {
   }
 
     backend "local" {
-      config = {
-      path = "/terraform"
-    }
   }
 
 }
