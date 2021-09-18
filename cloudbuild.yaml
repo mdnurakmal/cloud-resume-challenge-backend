@@ -16,6 +16,7 @@ steps:
     - '-c' # pass what follows as a command to bash
     - |
       terraform -chdir=terraform init
+      terraform -chdir=terraform import google_project.my_project ${PROJECT_ID}
       terraform -chdir=terraform import google_cloud_run_service.cloud-resume-challenge asia-east1/${PROJECT_ID}/${_SERVICE_NAME}
       terraform -chdir=terraform destroy
       terraform -chdir=terraform apply
