@@ -16,13 +16,7 @@ provider "google" {
 }
 
 
-data "google_project" "project" {
-
-}
-
-
 locals {
-  project = data.google_project.project.project_id
   service_name   = "cloud-resume-challenge"
 }
 

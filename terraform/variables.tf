@@ -4,5 +4,11 @@ variable "region" {
   description = "Select region to deploy cloud run"
 }
 
+variable "project" {
+  type    = string
+  default = ""
+  description = "Enter project name:"
+}
+
 
 
