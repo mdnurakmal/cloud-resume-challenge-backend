@@ -1,4 +1,13 @@
 steps:
+  - id: "Test flask app"
+    name: "python"
+    entrypoint: 'bash'
+    args:
+    - '-c' # pass what follows as a command to bash
+    - |
+      pytest
+
+
   - id: "Build docker image"
     name: "gcr.io/cloud-builders/docker"
     entrypoint: 'bash'
