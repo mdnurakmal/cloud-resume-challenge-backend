@@ -15,13 +15,10 @@ steps:
     - '-c' # pass what follows as a command to bash
     - |
       gcloud config set project ${PROJECT_ID}
-      gcloud artifacts docker images list asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME} --limit=1 | grep sha256 | cut -d ' ' -f 3
-      dockerSHA=`gcloud artifacts docker images list asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME} --limit=1 | grep sha256 | cut -d ' ' -f 2`
+
+      dockerSHA=`gcloud artifacts docker images list asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME} --limit=1 | grep sha256 | cut -d ' ' -f 3`
       echo $dockerSHA > /workspace/first.txt
-      echo HELLO
-      echo ${PROJECT_ID}
-      echo ${_SERVICE_NAME}
-      echo $dockerSHA
+
 
   - id: "Update cloud run service"
     name: "gcr.io/${PROJECT_ID}/terraform"
@@ -31,7 +28,7 @@ steps:
     - |
       dockerSHA=$(cat /workspace/first.txt)
       echo $dockerSHA
-      echo test
+
       terraform -chdir=terraform init
       terraform -chdir=terraform import google_service_account.cloud_resume_challenge_worker projects/${PROJECT_ID}/serviceAccounts/crc-worker-id@${PROJECT_ID}.iam.gserviceaccount.com
       terraform -chdir=terraform import google_cloud_run_service.cloud-resume-challenge asia-east1/${PROJECT_ID}/${_SERVICE_NAME}
