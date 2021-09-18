@@ -9,14 +9,14 @@ steps:
       docker push asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}
 
   - id: "Setup gcloud"
-  name: "gcr.io/cloud-builders/gcloud"
-  entrypoint: 'bash'
-  args:
-  - '-c' # pass what follows as a command to bash
-  - |
-    gcloud config set project ${PROJECT_ID}
-    dockerSHA=`gcloud artifacts docker images list asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME} --limit=1 | grep sha256 | cut -d ' ' -f 2`
-    echo $dockerSHA > /workspace/first.txt
+    name: "gcr.io/cloud-builders/gcloud"
+    entrypoint: 'bash'
+    args:
+    - '-c' # pass what follows as a command to bash
+    - |
+      gcloud config set project ${PROJECT_ID}
+      dockerSHA=`gcloud artifacts docker images list asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME} --limit=1 | grep sha256 | cut -d ' ' -f 2`
+      echo $dockerSHA > /workspace/first.txt
 
   - id: "Update cloud run service"
     name: "gcr.io/${PROJECT_ID}/terraform"
