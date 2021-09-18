@@ -6,6 +6,12 @@ steps:
     - '-c' # pass what follows as a command to bash
     - |
       pip install pytest
+      pip install flask gunicorn
+      pip install flask-wtf
+      pip install flask-bootstrap
+      pip install Flask-Cors
+      pip install google-cloud-firestore
+      pip install google-cloud-logging
       pytest
 
 
