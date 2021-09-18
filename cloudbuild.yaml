@@ -20,6 +20,7 @@ steps:
       echo $dockerSHA > /workspace/first.txt
       echo HELLO
       echo ${PROJECT_ID}
+      echo ${_SERVICE_NAME}
       echo $dockerSHA
 
   - id: "Update cloud run service"
