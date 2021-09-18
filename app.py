@@ -7,7 +7,7 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/increment/', methods=['GET'])
+@app.route('/', methods=['GET'])
 def welcome():
     print("hello")
     increment()
