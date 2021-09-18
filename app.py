@@ -9,7 +9,7 @@ cors = CORS(app, resources={r"/*": {"origins": "https://www.oneclicklaunch.com"}
 
 @app.route('/', methods=['GET'])
 def welcome():
-    print("hello")
+
     increment()
 
     value ={
@@ -17,7 +17,7 @@ def welcome():
     }
 
    
-    return json.dumps(value)
+    return value
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
