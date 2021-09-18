@@ -5,7 +5,7 @@ import json
 import os
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "https://oneclicklaunch.com"}})
+cors = CORS(app, resources={r"/*": {"origins": "https://www.oneclicklaunch.com"}})
 
 @app.route('/', methods=['GET'])
 def welcome():
