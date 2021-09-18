@@ -9,8 +9,6 @@ cors = CORS(app, resources={r"/*": {"origins": "https://oneclicklaunch.com"}})
 
 @app.route('/', methods=['GET'])
 def welcome():
-
-
     return ('Hello World!')
 
 
