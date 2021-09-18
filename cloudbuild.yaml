@@ -9,13 +9,12 @@ steps:
 
   - id: "Build docker image"
     name: "gcr.io/cloud-builders/docker"
+    entrypoint: 'bash'
     args:
-      [
-        "build",
-        "-t",
-        "asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}",
-        ".",
-      ]
+    - '-c' # pass what follows as a command to bash
+    - |
+      docker build . -t asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}
+      docker push asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}
 
   - id: "Update cloud run service"
     name: "gcr.io/${PROJECT_ID}/terraform"
