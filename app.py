@@ -9,8 +9,15 @@ cors = CORS(app, resources={r"/*": {"origins": "https://www.oneclicklaunch.com"}
 
 @app.route('/', methods=['GET'])
 def welcome():
-    return ('Hello World!')
+    print("hello")
+    increment()
 
+    value ={
+        "count" : "1"
+    }
+
+   
+    return value
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
