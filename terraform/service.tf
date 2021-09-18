@@ -1,6 +1,7 @@
 # The Cloud Run service
 resource "google_cloud_run_service" "cloud-resume-challenge" {
   name                       = local.service_name
+  project                    = var.project
   location                   = var.region
   autogenerate_revision_name = true
 
