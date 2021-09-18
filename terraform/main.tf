@@ -11,8 +11,16 @@ terraform {
 
 }
 
-provider "google" {}
+provider "google" {
+
+}
+
+resource "google_project" "project" {
+
+}
+
 data "google_project" "project" {
+
 }
 
 
