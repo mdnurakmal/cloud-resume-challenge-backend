@@ -17,6 +17,8 @@ resource "google_cloud_run_service" "cloud-resume-challenge" {
     percent         = 100
     latest_revision = true
   }
+
+   depends_on = [google_project_iam_binding.firestore_permmisions]
 }
 
 # Set service public
