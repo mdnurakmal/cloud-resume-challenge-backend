@@ -14,47 +14,38 @@ steps:
       pip install google-cloud-logging
       pytest -v -s
 
-
-  - id: "Build docker image"
-    name: "gcr.io/cloud-builders/docker"
-    entrypoint: 'bash'
+  - name: gcr.io/cloud-builders/docker
     args:
-    - '-c' # pass what follows as a command to bash
-    - |
-      docker build . -t asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}
-      docker push asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}
-
-  - id: "Setup gcloud & get latest docker digest"
-    name: "gcr.io/cloud-builders/gcloud"
-    entrypoint: 'bash'
+      - build
+      - '--no-cache'
+      - '-t'
+      - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+      - .
+      - '-f'
+      - Dockerfile
+    id: Build
+  - name: gcr.io/cloud-builders/docker
     args:
-    - '-c' # pass what follows as a command to bash
-    - |
-      gcloud config set project ${PROJECT_ID}
-
-      dockerSHA=`gcloud artifacts docker images list asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME} --limit=1 | grep sha256 | cut -d ' ' -f 3`
-      echo $dockerSHA > /workspace/first.txt
-
-
-  - id: "Update cloud run service"
-    name: "gcr.io/${PROJECT_ID}/terraform"
-    entrypoint: 'bash'
+      - push
+      - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+    id: Push
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
     args:
-    - '-c' # pass what follows as a command to bash
-    - |
-      dockerSHA=$(cat /workspace/first.txt)
-      echo $dockerSHA
-
-      terraform -chdir=terraform init
-      terraform -chdir=terraform import google_service_account.cloud_resume_challenge_worker projects/${PROJECT_ID}/serviceAccounts/crc-worker-id@${PROJECT_ID}.iam.gserviceaccount.com
-      terraform -chdir=terraform import google_cloud_run_service.cloud-resume-challenge asia-east1/${PROJECT_ID}/${_SERVICE_NAME}
-      terraform -chdir=terraform apply -auto-approve -var project=${PROJECT_ID} -var imagesha=$dockerSHA
-
-options:
-  logStreamingOption: STREAM_ON
-
-substitutions:
-  _SERVICE_NAME: cloud-resume-challenge
-
+      - run
+      - services
+      - update
+      - $_SERVICE_NAME
+      - '--platform=managed'
+      - '--image=$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+      - '--region=$_DEPLOY_REGION'
+      - '--quiet'
+    id: Deploy
+    entrypoint: gcloud
 images:
-  - "asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}"
+  - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
+options:
+  substitutionOption: ALLOW_LOOSE
+substitutions:
+  _GCR_HOSTNAME: asia.gcr.io
+  _SERVICE_NAME: test
+  _DEPLOY_REGION: cloud-resume-challenge
