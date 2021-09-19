@@ -6,6 +6,7 @@ steps:
     - '-c' # pass what follows as a command to bash
     - |
       gcloud config set project $PROJECT_ID
+      sudo apt-get install python-pip
       pip install pytest
       pip install flask gunicorn
       pip install flask-wtf
