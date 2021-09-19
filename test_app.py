@@ -10,7 +10,7 @@ def test_hello():
     assert list(response.json.keys())[0] == 'count'
     assert type(response.json['count']) is int 
     assert response.headers["Access-Control-Allow-Origin"] == "https://www.oneclicklaunch.com"
-    captured = capsys.readouterr()
+
 
 
     
