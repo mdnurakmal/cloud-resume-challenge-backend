@@ -1,21 +1,4 @@
 steps:
-  - id: "Test flask app"
-    name: "gcr.io/google.com/cloudsdktool/cloud-sdk:slim"
-    entrypoint: 'bash'
-    args:
-    - '-c' # pass what follows as a command to bash
-    - |
-      gcloud config set project $PROJECT_ID
-      sudo apt-get install python-pip
-      pip install pytest
-      pip install flask gunicorn
-      pip install flask-wtf
-      pip install flask-bootstrap
-      pip install Flask-Cors
-      pip install google-cloud-firestore
-      pip install google-cloud-logging
-      pytest -v -s
-
   - name: gcr.io/cloud-builders/docker
     args:
       - build
