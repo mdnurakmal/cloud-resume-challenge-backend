@@ -10,4 +10,4 @@ RUN pip install Flask-Cors
 RUN pip install google-cloud-firestore
 RUN pip install google-cloud-logging
 
-CMD gunicorn --bind :$PORT --workers 1 --threads 8 app:app
+CMD gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 app:app
