@@ -12,7 +12,7 @@ steps:
       pip install Flask-Cors
       pip install google-cloud-firestore
       pip install google-cloud-logging
-      pytest
+      pytest -v -s
 
 
   - id: "Build docker image"
