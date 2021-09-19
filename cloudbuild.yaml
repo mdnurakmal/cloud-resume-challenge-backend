@@ -1,7 +1,4 @@
 steps:
-<<<<<<< HEAD
-  - name: gcr.io/cloud-builders/docker
-=======
   - id: "Test flask app"
     name: "python"
     entrypoint: 'bash'
@@ -21,7 +18,6 @@ steps:
   - id: "Build docker image"
     name: "gcr.io/cloud-builders/docker"
     entrypoint: 'bash'
->>>>>>> parent of f1e9624 (Update cloudbuild.yaml)
     args:
     - '-c' # pass what follows as a command to bash
     - |
