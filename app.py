@@ -7,7 +7,7 @@ import os
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "https://www.oneclicklaunch.com"}})
 
-@app.route('/', methods=['GET'])
+@app.route('/increment', methods=['GET'])
 def welcome():
 
     increment()
