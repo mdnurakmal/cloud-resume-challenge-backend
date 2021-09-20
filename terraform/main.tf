@@ -13,11 +13,6 @@ terraform {
 
 provider "google" {
 
-<<<<<<< HEAD
-data "google_project" "project" {
-   project_id = var.project
-=======
->>>>>>> parent of 883aea2 (Update main.tf)
 }
 
 
