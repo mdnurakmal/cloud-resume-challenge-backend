@@ -16,6 +16,7 @@ terraform {
 provider "google" {}
 
 data "google_project" "project" {
+   project = var.project
 }
 
 
