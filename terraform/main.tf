@@ -6,23 +6,22 @@ terraform {
     }
   }
 
-    backend "gcs" {
-    bucket  = "cloud-resume-challenge-bucket"
-    prefix  = "terraform/state"
+    backend "local" {
   }
 
 }
 
-provider "google" {}
+provider "google" {
 
+<<<<<<< HEAD
 data "google_project" "project" {
    project_id = var.project
+=======
+>>>>>>> parent of 883aea2 (Update main.tf)
 }
 
 
 locals {
-  project = data.google_project.project.project_id
-  project_number = data.google_project.project.number
   service_name   = "cloud-resume-challenge"
   cloud_resume_challenge_worker_sa  = "serviceAccount:${google_service_account.cloud_resume_challenge_worker.email}"
 }
