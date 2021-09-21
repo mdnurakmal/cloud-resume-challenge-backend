@@ -8,7 +8,7 @@ from app import app
 
 
 def test_init():
-    result = app.test_client().init()
+    result = app.init()
     assert result == "Initialized"
 
 
