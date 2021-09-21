@@ -21,8 +21,8 @@ steps:
     args:
     - '-c'
     - |
-      docker build . -t ${REGION}-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}
-      docker push ${REGION}-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}
+      docker build . -t ${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}
+      docker push ${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}
 
   - id: "Setup gcloud & get latest docker digest"
     name: "gcr.io/cloud-builders/gcloud"
@@ -32,7 +32,7 @@ steps:
     - |
       gcloud config set project ${PROJECT_ID}
 
-      dockerSHA=`gcloud artifacts docker images list ${REGION}-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME} --limit=1 --sort-by=~CREATE_TIME | grep sha256 | cut -d ' ' -f 3`
+      dockerSHA=`gcloud artifacts docker images list ${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME} --limit=1 --sort-by=~CREATE_TIME | grep sha256 | cut -d ' ' -f 3`
       echo $dockerSHA > /workspace/first.txt
 
 
@@ -57,4 +57,4 @@ substitutions:
   _SERVICE_NAME: cloud-resume-challenge
 
 images:
-  - "${REGION}-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}"
+  - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}"
