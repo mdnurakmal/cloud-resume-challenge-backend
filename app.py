@@ -1,5 +1,5 @@
 from flask import Flask
-from distributed_counters import increment,getVisitorCount
+from distributed_counters import increment,getVisitorCount,init
 from flask_cors import CORS
 import json
 import os
@@ -18,6 +18,12 @@ def welcome():
 
    
     return value
+
+def setup_app(app):
+    init()
+   # All your initialization code
+
+setup_app(app)
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))

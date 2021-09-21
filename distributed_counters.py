@@ -87,29 +87,29 @@ def getVisitorCount():
     global counter, doc_ref
     return counter.get_count(doc_ref)
 
-    
+def init():    
 
-# Instantiates a client
-client = google.cloud.logging.Client()
+    # Instantiates a client
+    client = google.cloud.logging.Client()
 
-# Retrieves a Cloud Logging handler based on the environment
-# you're running in and integrates the handler with the
-# Python logging module. By default this captures all logs
-# at INFO level and higher
-client.get_default_handler()
-client.setup_logging()
+    # Retrieves a Cloud Logging handler based on the environment
+    # you're running in and integrates the handler with the
+    # Python logging module. By default this captures all logs
+    # at INFO level and higher
+    client.get_default_handler()
+    client.setup_logging()
 
-log.info("Some log here") 
+    log.info("Some log here") 
 
-db = firestore.Client()
-doc_ref = db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge')
-hasInit = doc_ref.get({u'hasInit'}).to_dict()['hasInit']
+    db = firestore.Client()
+    doc_ref = db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge')
+    hasInit = doc_ref.get({u'hasInit'}).to_dict()['hasInit']
 
-counter = Counter(10)
+    counter = Counter(10)
 
-if not hasInit :
-    print(hasInit)
-    counter.init_counter(doc_ref)
-    db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge').update({u'hasInit': True})
-else:
-    print(hasInit)
+    if not hasInit :
+        print(hasInit)
+        counter.init_counter(doc_ref)
+        db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge').update({u'hasInit': True})
+    else:
+        print(hasInit)
