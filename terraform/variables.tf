@@ -1,6 +1,6 @@
 variable "region" {
   type    = string
-  default = "asia-east1"
+  default = ""
   description = "Select region to deploy cloud run"
 }
 
