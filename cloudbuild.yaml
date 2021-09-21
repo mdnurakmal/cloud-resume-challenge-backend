@@ -3,7 +3,7 @@ steps:
     name: "python"
     entrypoint: 'bash'
     args:
-    - '-c' # pass what follows as a command to bash
+    - '-c'
     - |
       pip install pytest
       pip install flask gunicorn
@@ -19,7 +19,7 @@ steps:
     name: "gcr.io/cloud-builders/docker"
     entrypoint: 'bash'
     args:
-    - '-c' # pass what follows as a command to bash
+    - '-c'
     - |
       docker build . -t asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}
       docker push asia-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}
@@ -28,7 +28,7 @@ steps:
     name: "gcr.io/cloud-builders/gcloud"
     entrypoint: 'bash'
     args:
-    - '-c' # pass what follows as a command to bash
+    - '-c'
     - |
       gcloud config set project ${PROJECT_ID}
 
@@ -40,7 +40,7 @@ steps:
     name: "gcr.io/${PROJECT_ID}/terraform"
     entrypoint: 'bash'
     args:
-    - '-c' # pass what follows as a command to bash
+    - '-c' 
     - |
       dockerSHA=$(cat /workspace/first.txt)
       echo $dockerSHA
