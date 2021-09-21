@@ -7,7 +7,7 @@ import os
 from app import app
 
 
-def test_init()
+def test_init():
     result = app.test_client().init()
     assert result == "Initialized"
 
