@@ -108,10 +108,12 @@ def init():
     counter = Counter(10)
 
     if not hasInit :
+        print(">>")
         print(hasInit)
         counter.init_counter(doc_ref)
         db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge').update({u'hasInit': True})
     else:
+        print(">>>")
         print(hasInit)
 
     return "Initialized"
