@@ -1,5 +1,5 @@
 from flask import Flask
-from distributed_counters import increment,getVisitorCount
+from distributed_counters import increment,getVisitorCount,init
 from flask_cors import CORS
 import json
 import os
@@ -8,7 +8,7 @@ from app import app
 
 
 def test_init():
-    result = app.init()
+    result = init()
     assert result == "Initialized"
 
 
