@@ -21,8 +21,8 @@ steps:
     args:
     - '-c'
     - |
-      docker build . -t ${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}
-      docker push ${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}
+      docker build . -t ${REGION}-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}
+      docker push ${REGION}-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}
 
   - id: "Setup gcloud & get latest docker digest"
     name: "gcr.io/cloud-builders/gcloud"
@@ -32,7 +32,7 @@ steps:
     - |
       gcloud config set project ${PROJECT_ID}
 
-      dockerSHA=`gcloud artifacts docker images list ${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME} --limit=1 --sort-by=~CREATE_TIME | grep sha256 | cut -d ' ' -f 3`
+      dockerSHA=`gcloud artifacts docker images list ${REGION}-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME} --limit=1 --sort-by=~CREATE_TIME | grep sha256 | cut -d ' ' -f 3`
       echo $dockerSHA > /workspace/first.txt
 
 
@@ -47,7 +47,7 @@ steps:
 
       terraform -chdir=terraform init
       terraform -chdir=terraform import google_service_account.cloud_resume_challenge_worker projects/${PROJECT_ID}/serviceAccounts/crc-worker-id@${PROJECT_ID}.iam.gserviceaccount.com
-      terraform -chdir=terraform import google_cloud_run_service.cloud-resume-challenge ${_REGION}/${PROJECT_ID}/${_SERVICE_NAME}
+      terraform -chdir=terraform import google_cloud_run_service.cloud-resume-challenge ${REGION}/${PROJECT_ID}/${_SERVICE_NAME}
       terraform -chdir=terraform apply -auto-approve -var project=${PROJECT_ID} -var imagesha=$dockerSHA
 
 options:
@@ -57,4 +57,4 @@ substitutions:
   _SERVICE_NAME: cloud-resume-challenge
 
 images:
-  - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}"
+  - "${REGION}-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}"
