@@ -113,3 +113,5 @@ def init():
         db.collection(u'cloud-resume-challenge-collection').document(u'cloud-resume-challenge').update({u'hasInit': True})
     else:
         print(hasInit)
+
+    return "Initialized"

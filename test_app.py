@@ -6,6 +6,13 @@ import os
 
 from app import app
 
+
+def test_init()
+    result = app.test_client().init()
+    assert result == "Initialized"
+
+
+
 def test_hello():
     response = app.test_client().get('/increment')
 
@@ -16,7 +23,6 @@ def test_hello():
     print("JSON received passed")
     assert response.headers["Access-Control-Allow-Origin"] == "https://www.oneclicklaunch.com"
     print("CORS passed")
-
 
 
     
