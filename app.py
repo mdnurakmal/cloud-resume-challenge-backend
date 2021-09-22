@@ -19,9 +19,10 @@ def welcome():
    
     return value
 
+# Initialize firestore
 def setup_app(app):
     init()
-   # All your initialization code
+
 
 setup_app(app)
 
